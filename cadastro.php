@@ -1,13 +1,16 @@
 <?
+    // include_once("connect.php");
+    // include_once("set_character.php");
+    
     $obj_mysqli = new mysqli("127.0.0.1","root","","CRUDprocess");
 
     if ($obj_mysqli->connect_errno) {
         echo "Ocorreu um erro na conexão com o banco  de dados.";
         exit;
     }
-
     mysqli_set_charset($obj_mysqli, 'utf-8'); //OS DADOS SERAO TRABALHADOS NA FORMA UTF-8
-
+    
+    
     //Inserção variaveis registro (Alteração update)
     $id = -1;
     $nome = "";
@@ -110,10 +113,13 @@
     }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>CRUD com PHP, de forma simples e fácil</title>
+    <title>CRUD com PHP</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
   </head>
   <body>
     <?
@@ -128,10 +134,12 @@
 	  <input type="text" name="nome" placeholder="Qual seu nome?" value="<?=$nome?>"><br/><br/>
 	  E-mail:<br/> 
 	  <input type="email" name="email" placeholder="Qual seu e-mail?" value="<?=$email?>"><br/><br/>
-	  Cidade:<br/> 
-	  <input type="text" name="cidade" placeholder="Qual sua cidade?" value="<?=$cidade?>"><br/><br/>
-	  UF:<br/> 
-	  <input type="text" name="uf" size="2" placeholder="UF" value="<?=$uf?>">
+      <!-- Estado alteração para arquivo json -->
+      UF:<select id="estados" name="uf">
+		<option value=""  placeholder="Qual seu estado?"></option>
+      </select>
+      <!-- Cidade -->
+      Cidade:<select id="cidades" name="cidade" value=<?=$cidade?>></select>
 	  <br/><br/>
       <input type="hidden" value="-1" name="id">
         <!--Alteracao feita aqui para mostrar o texto Cadastrar ou salvar de acordo com o momento-->
@@ -164,7 +172,8 @@
             }
         ?>
     </table>
-
-
+    <!-- jQuery JS 3.1.0 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="combo_dinamico.js"></script>
   </body>
 </html>
