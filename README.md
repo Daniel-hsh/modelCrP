@@ -6,6 +6,12 @@ Modelo de CRUD GENÉRICO para ser utilizado em diversas aplicações como modelo
 (EStudo estruturado e orientado);
 
 
+Atualizações necessarias: 
+- CORREÇÃO: ERRO CARACTERES TABELAS
+- CORREÇÃO: INSTRUÇÃO UPDATE INSERE UM NOVO REGISTRO E ESTA ERRADO
+- CORREÇÃO: EXCLUSAO DE REGISTRO / TELA DE CONFIRMAÇÃO DE DELETAGEM DE REGISTRO
+- INSERÇÃO: PESQUISA ESPECIFICA
+- INSERÇÃO: LOGIN
 
 Referências:
 - Arquitetura de aplicação e utilização de código -
