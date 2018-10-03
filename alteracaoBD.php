@@ -7,6 +7,9 @@
     if(!$stmt->execute()){
         $erro = $stmt->error;
     }
+
+    
+
 ?>
 <!DOCTYPE html>
 <html>
