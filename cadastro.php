@@ -1,15 +1,6 @@
 <?
-    // include_once("connect.php");
-    // include_once("set_character.php");
-    
-    $obj_mysqli = new mysqli("127.0.0.1","root","","CRUDprocess");
-
-    if ($obj_mysqli->connect_errno) {
-        echo "Ocorreu um erro na conexão com o banco  de dados.";
-        exit;
-    }
-    mysqli_set_charset($obj_mysqli, 'utf-8'); //OS DADOS SERAO TRABALHADOS NA FORMA UTF-8
-    
+    include_once("connect.php");
+    include_once("set_character.php");
     
     //Inserção variaveis registro (Alteração update)
     $id = -1;
@@ -24,14 +15,14 @@
     {
         if (empty($_POST["nome"]))
             $erro = "Campo nome obrigatorio!";
-        else{
+        else
+        {
             if (empty($_POST["email"])) {
                 $erro = "Campo email obrigatorio!";
             } 
             else 
             {
                 //CADASTRO DE ITEM / PUXAR OS DADOS DO FORMULARIO
-
                 $id = $_POST["id"];
                 $nome = $_POST["nome"];
                 $email = $_POST["email"];
@@ -130,9 +121,9 @@
                 echo '<div style="color:#00f">'.$sucesso.'</div><br /><br />';
     ?>
 	<form action="<?=$_SERVER['PHP_SELF'] ?>" method="POST">
-	  Nome:<br/> 
+	  Nome:<br/>
 	  <input type="text" name="nome" placeholder="Qual seu nome?" value="<?=$nome?>"><br/><br/>
-	  E-mail:<br/> 
+	  E-mail:<br/>
 	  <input type="email" name="email" placeholder="Qual seu e-mail?" value="<?=$email?>"><br/><br/>
       <!-- Estado alteração para arquivo json -->
       UF:<select id="estados" name="uf">
