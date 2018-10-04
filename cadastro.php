@@ -110,61 +110,111 @@
     <title>CRUD com PHP</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <meta http-equiv="X-UA-Compatible" content="IE=7"><!-- Bootstrap CSS 3.3.7 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
   </head>
   <body>
-    <?
-        if(isset($erro))
-            echo '<div style="color:#F00">'.$erro.'</div><br /><br />';
-        else
-            if(isset($sucesso))
-                echo '<div style="color:#00f">'.$sucesso.'</div><br /><br />';
-    ?>
-	<form action="<?=$_SERVER['PHP_SELF'] ?>" method="POST">
-	  Nome:<br/>
-	  <input type="text" name="nome" placeholder="Qual seu nome?" value="<?=$nome?>"><br/><br/>
-	  E-mail:<br/>
-	  <input type="email" name="email" placeholder="Qual seu e-mail?" value="<?=$email?>"><br/><br/>
-      <!-- Estado alteração para arquivo json -->
-      UF:<select id="estados" name="uf">
-		<option value=""  placeholder="Qual seu estado?"></option>
-      </select>
-      <!-- Cidade -->
-      Cidade:<select id="cidades" name="cidade" value=<?=$cidade?>></select>
-	  <br/><br/>
-      <input type="hidden" value="-1" name="id">
-        <!--Alteracao feita aqui para mostrar o texto Cadastrar ou salvar de acordo com o momento-->
-	  <button type="submit"><?=($id==-1)?"Cadastrar":"Salvar" ?></button>
-    </form>
-    <br />
-    <br />
-
-    <table width="400px" border="0" cellspacing="0">
-        <tr>
-            <td><strong>#</strong></td>
-            <td><strong>Nome</strong></td>
-            <td><strong>Email</strong></td>
-            <td><strong>Cidade</strong></td>
-            <td><strong>UF</strong></td>
-        </tr>
-
-        <?
-            $result = $obj_mysqli->query("SELECT * FROM `cliente` ");
-            while ($aux_query = $result->fetch_assoc()) {
-                echo '<tr>';
-                echo ' <td>'.$aux_query["Id"].'</td> ';
-                echo ' <td>'.$aux_query["Nome"].'</td> ';
-                echo ' <td>'.$aux_query["Email"].'</td> ';
-                echo ' <td>'.$aux_query["Cidade"].'</td> ';
-                echo ' <td>'.$aux_query["UF"].'</td> ';
-                echo ' <td><a href="'.$_SERVER["PHP_SELF"].'?id='.$aux_query["Id"].'">Editar</a></td>';//Por aqui passa o ID - EDITAR REGISTRO
-                echo ' <td><a href="'.$_SERVER["PHP_SELF"].'?id='.$aux_query["Id"].'&del=true">Excluir</a></td>';//Por aqui passa o ID - DELETAR REGISTRO
-                echo '</tr>';
-            }
-        ?>
-    </table>
+    <div class="container-fluid">
+    <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                      <div class="navbar-header">
+                        <a class="navbar-brand" href="/RHACTS/manter_funcionarios.jsp"><img src="/RHACTS/css/logo0.png"style="width: 76%; margin: -1vh"></a>
+                      </div>
+                      <ul class="nav navbar-nav">
+                        <li><a href="/RHACTS/manter_funcionarios.jsp">Link1</a></li>
+                        <li><a href="/RHACTS/manter_departamentos.jsp">Link2</a></li>
+                        <li><a href="/RHACTS/manter_cargos.jsp">Link3</a></li>
+                        <li><a href="/RHACTS/manter_folhas.jsp">Link4</a></li>
+                        <li><a href="/RHACTS/RelatoriosGerente">Link4</a></li>
+                      </ul>
+                      <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <div style="margin-top: 2vh; color: #ccc; ">
+                                Bem vindo
+                            </div>
+                        </li>
+                        <li><a href="/RHACTS/ProcessaLogout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                      </ul>
+                    </div>
+    </nav>
+    </div>
+    <div class="container">
+    <main role="main">
+        <div class="row form">
+            <div class="col-sm-5">
+                <?
+                    if(isset($erro))
+                        echo '<div style="color:#F00">'.$erro.'</div><br /><br />';
+                    else
+                        if(isset($sucesso))
+                            echo '<div style="color:#00f">'.$sucesso.'</div><br /><br />';
+                ?>
+                <form action="<?=$_SERVER['PHP_SELF'] ?>" method="POST">
+                    <div class="form-group row">
+                        <input class="form-control" type="text" name="nome" value="<?=$nome?>" placeholder="Enter name">
+                    </div>
+                    <div class="form-group row">
+                        <input class="form-control" type="email" name="email" value="<?=$email?>" placeholder="Enter with valid Email (example@example.com)">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <select class="form-control d-inline-block " id="estados" name="uf">
+                                <option value="" placeholder="State"></option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-control d-inline-block " id="cidades" name="cidade" value=<?=$cidade?>></select>    
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <input class="form-control d-inline-block " type="hidden" name="id" value="-1" >
+                        </div>
+                    </div>
+                    <!--Alteracao feita aqui para mostrar o texto Cadastrar ou salvar de acordo com o momento-->
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary"><?=($id==-1)?"Cadastrar":"Salvar" ?></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <table class= "table" width="400px" border="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Cidade</th>
+                    <th scope="col">UF</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?
+                    $result = $obj_mysqli->query("SELECT * FROM `cliente` ");
+                    while ($aux_query = $result->fetch_assoc()) {
+                        echo '<tr scope="row">';
+                        echo ' <td>'.$aux_query["Id"].'</td> ';
+                        echo ' <td>'.$aux_query["Nome"].'</td> ';
+                        echo ' <td>'.$aux_query["Email"].'</td> ';
+                        echo ' <td>'.$aux_query["Cidade"].'</td> ';
+                        echo ' <td>'.$aux_query["UF"].'</td> ';
+                        echo ' <td><a href="'.$_SERVER["PHP_SELF"].'?id='.$aux_query["Id"].'">Editar</a></td>';//Por aqui passa o ID - EDITAR REGISTRO
+                        echo ' <td><a href="'.$_SERVER["PHP_SELF"].'?id='.$aux_query["Id"].'&del=true">Excluir</a></td>';//Por aqui passa o ID - DELETAR REGISTRO
+                        echo '</tr>';
+                    }
+                ?>
+            </tbody>
+        </table>
+    </main>
+    </div>
     <!-- jQuery JS 3.1.0 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="combo_dinamico.js"></script>
+    <!-- Bootstrap JS 3.3.7 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 </html>

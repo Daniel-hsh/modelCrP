@@ -12,7 +12,7 @@ Atualizações necessarias:
 - CORREÇÃO: EXCLUSAO DE REGISTRO / TELA DE CONFIRMAÇÃO DE DELETAGEM DE REGISTRO
 - INSERÇÃO: PESQUISA ESPECIFICA
 - INSERÇÃO: LOGIN
-- INSERÇÃO FRAMEWORK BOOTSTRAP
+- INSERÇÃO FRAMEWORK BOOTSTRAP(Check)
 
 Referências:
 - Arquitetura de aplicação e utilização de código -
